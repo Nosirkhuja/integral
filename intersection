@@ -7,17 +7,17 @@ type
   Func = function(x: real): real;{описание функционального типа}
 
 {Сами функции как F1,F2,F3}
-
+{$F+}
 function F1(x: real): real;
 begin
   F1 := 0.6 * x + 3; 
 end;
-
+{$F+}
 function F2(x: real): real;
 begin
   F2 := power(x - 2, 3) - 1; 
 end;
-
+{$F+}
 function F3(x: real): real;
 begin
   F3 := 3 / x; 
@@ -25,28 +25,30 @@ end;
 {Конец функций}
 
 {Производные первого порядка}
+{$F+}
 function F1_der1(x: real): real;
 begin
   F1_der1 := 0.6; 
 end;
-
+{$F+}
 function F2_der1(x: real): real;
 begin
   F2_der1 := 3 * (x - 2) * (x - 2); 
 end;
-
+{$F+}
 function F3_der1(x: real): real;
 begin
   F3_der1 := -3 / (x * x); 
 end;
 {конец производных первого порядка} 
-
+{$F+}
 function root(f, g, f1, g1: func; a, b: real): real;
+{$F+}
   function fg(x: real): real;{Вложенная функция вычисиляющая разность 𝑓(𝑥) − 𝑔(𝑥)}
   begin
     fg := f(x) - g(x);
   end;
-  
+  {$F+}
   function fg1(x: real): real;
   begin
     fg1 := f1(x) - g1(x); {Вложенная функция вычисиляющая разность 𝑓'(𝑥) − 𝑔'(𝑥)}
@@ -70,8 +72,9 @@ end;
 
 begin
   eps := 0.0001; 
-  write(root(F1, F3, F1_der1, F3_der1, 5, 1));
+  write(root(F2, F3, F2_der1, F3_der1, -1, -0.1));
 end.
+
 
 
 
